@@ -5,11 +5,13 @@ Source_Name = "news"
 # Question1 & it's answer
 question_1 = "What are the three most popular articles of all time?"
 query_1 = "select title,visit_count from info_view limit 3"
+
 # Question2 & it's answer
 question_2 = "Who are the most popular article authors of all time?"
-query_2 = """SELECT authors.name,sum(info_view.visit_count) as author_views from
-info_view,authors where authors.id = info_view.author
-group by authors.name order by author_views limit 3"""
+query_2 = (
+    "SELECT authors.name,sum(info_view.visit_count) as author_views from "
+    "info_view,authors where authors.id = info_view.author "
+    "group by authors.name order by author_views desc")
 
 
 # Function for setting up the database connection
