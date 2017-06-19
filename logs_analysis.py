@@ -9,7 +9,7 @@ query_1 = "select title,visit_count from info_view limit 3"
 question_2 = "Who are the most popular article authors of all time?"
 query_2 = """SELECT authors.name,sum(info_view.visit_count) as author_views from
 info_view,authors where authors.id = info_view.author
-group by authors.name order by author_views desc"""
+group by authors.name order by author_views limit 3"""
 
 
 # Function for setting up the database connection
