@@ -13,6 +13,17 @@ query_2 = (
     "info_view,authors where authors.id = info_view.author "
     "group by authors.name order by author_views desc")
 
+# Question3 & it's answer
+question_3 = "On which days did more than 1% of requests lead to errors?"
+query_3 = (
+    "select day_val, perc_err from ("
+    "select day_val, round((sum(request_err)/(select count(*) from log where "
+    "substring(log.time, 0, 11) = day_val) * 100), 2) as "
+    "perc_err from (select substring(log.time, 0, 11) as day_val, "
+    "count(*) as request_err from log where status like '%404' group by day_val)"
+    "as perc_val group by day_val) as answer "
+    "where perc_err > 1")
+
 
 # Function for setting up the database connection
 def retrieve_results(query):
@@ -32,10 +43,19 @@ def display_results(answers):
                 "\t", iter_val+1, "->", q_answers[0],
                 "\t - ", str(q_answers[1]), "views")
 
+# Function that displays query 3 output
+def display_q3_results(answers):
+    print (answers[0])
+    for q_answer in answers[1]:
+        print ("\t", q_answer[0], "->", str(q_answer[1]) + "%")
+
 
 # Retrieving the results and storing it in a list
 query_1_answer = question_1, retrieve_results(query_1)
 query_2_answer = question_2, retrieve_results(query_2)
+query_3_answer = question_3, retrieve_results(query_3)
+
 # Displaying the results
 display_results(query_1_answer)
 display_results(query_2_answer)
+display_q3_results(query_3_answer)
