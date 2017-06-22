@@ -16,12 +16,12 @@ query_2 = (
 # Question3 & it's answer
 question_3 = "On which days did more than 1% of requests lead to errors?"
 query_3 = (
-    "select day_val, perc_err from ("
-    "select day_val, round((sum(request_err)/(select count(*) from log where "
-    "substring(cast(log.time as text), 0, 11) = day_val) * 100), 2) as "
-    "perc_err from (select substring(cast(log.time as text), 0, 11) as day_val, "
-    "count(*) as request_err from log where status like '%404%' group by day_val)"
-    "as perc_val group by day_val order by perc_err desc) as answer "
+    "select eday, perc_err from ("
+    "select eday, round((sum(request_err)/(select count(*) from log where "
+    "substring(cast(log.time as text), 0, 11) = eday) * 100), 2) as "
+    "perc_err from (select substring(cast(log.time as text), 0, 11) as eday, "
+    "count(*) as request_err from log where status like '%404%' group by eday)"
+    "as perc_val group by eday order by perc_err desc) as answer "
     "where perc_err > 1")
 
 
