@@ -4,12 +4,12 @@
     based on the data in the database. 
   - This reporting tool is a Python program using the psycopg2 module to connect to the database.
 # Software Requirements
-  - Python 3 and PostgreSQL are required to run this project.
+  - Python 3 and PostgreSQL 9.3 are required to run this project.
   - Vagrant and VirtualBox should be installed on your system.
 # Setting up the virtual machine and loading the data
   - Download FSND-Virtual-Machine.zip This will give you a directory called FSND-Virtual-Machine. 
   - Alternately, you can use Github to fork and clone the repository https://github.com/udacity/fullstack-nanodegree-vm.
-  - Change to this directory in your terminal with cd.
+  - Change to the FSND-Virtual-Machine directory in your terminal with cd.
   - Inside, you will find another directory called vagrant.
   - Change directory to the vagrant directory
   - Launch your VM using the command vagrant up
@@ -27,6 +27,7 @@
       - create view info_view as select title,author,count(*) as visit_count from articles,log 
     where log.path like concat('%',articles.slug) group by articles.title,articles.author 
     order by visit_count desc;
+  - Clone this repository and place the code file inside vagrant directory that is shared to the VM.
   - Make sure you are in the right directory.
   - To view the results run the command python3 logs_analysis.py
   
