@@ -30,5 +30,8 @@
   - Clone this repository and place the code file inside vagrant directory that is shared to the VM.
   - Make sure you are in the right directory.
   - To view the results run the command python3 logs_analysis.py
+ # Extra Notes
+ - Syntax for creating views, subqueries and built in functions like substring, cast has been referenced here.
+    - https://www.postgresql.org/docs/8.0/static/tutorial.html
   
   
